@@ -31,10 +31,21 @@ app.post('/api/generate', async (req, res) => {
             samples: 1
         });
 
+        console.log('AI API Response Status:', response.data.status);
+
+        if (response.data.status === 'error' || response.data.status === 'failed') {
+            console.error('AI API Error Details:', response.data);
+            return res.status(400).json({
+                error: response.data.message || response.data.error || 'AI service error',
+                details: response.data
+            });
+        }
+
         res.json(response.data);
     } catch (error) {
-        console.error('API Error:', error.message);
-        res.status(500).json({ error: 'AI generation failed: ' + error.message });
+        console.error('Server/API Error:', error.response ? error.response.data : error.message);
+        const errorMessage = error.response?.data?.message || error.response?.data?.error || error.message;
+        res.status(500).json({ error: 'AI generation failed: ' + errorMessage });
     }
 });
 

@@ -75,13 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             loading.style.display = 'none';
 
-            if (data.status === 'success' || data.output) {
+            if (data.status === 'success' || (data.output && data.output.length > 0)) {
                 const outputUrl = data.output[0];
                 // Update preview to show the generated image
                 preview.src = outputUrl;
                 alert('혁신적인 새로운 디자인이 탄생했습니다!');
             } else {
-                alert('오류: ' + (data.error || '디자인 생성에 실패했습니다.'));
+                const msg = data.message || data.error || '디자인 생성에 실패했습니다.';
+                alert('오류: ' + msg);
             }
         } catch (error) {
             loading.style.display = 'none';
