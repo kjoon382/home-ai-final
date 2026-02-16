@@ -23,11 +23,14 @@ app.post('/api/generate', async (req, res) => {
             return res.status(500).json({ error: 'API Key is missing in environment variables.' });
         }
 
-        const response = await axios.post('https://modelslab.com/api/v6/realtime/interior_render', {
+        const response = await axios.post('https://modelslab.com/api/v6/interior/make', {
             key: apiKey,
             init_image: image,
-            prompt: (style || "modern") + " interior design, professional photography, high quality, 8k",
-            model_id: "interior-design-xl",
+            prompt: (style || "modern") + " interior design, professional photography, high quality, 8k, realistic, highly detailed",
+            negative_prompt: "blurry, low quality, distorted, extra limbs, ugly, messy",
+            num_inference_steps: 30,
+            guidance_scale: 7.5,
+            strength: 7, // 1-10 scale based on documentation
             samples: 1
         });
 
