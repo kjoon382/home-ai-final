@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
@@ -37,8 +38,9 @@ app.post('/api/generate', async (req, res) => {
     }
 });
 
-// Always serve index.html for any frontend request
-app.get('*', (req, res) => {
+// Fallback to index.html (Simplified for compatibility)
+app.use((req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
