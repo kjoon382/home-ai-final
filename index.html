@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home AI - AI 인테리어 디자인</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Home AI</h1>
+        <p class="subtitle">AI가 제안하는 당신만을 위한 완벽한 인테리어</p>
+    </header>
+
+    <main>
+        <section class="content-area">
+            <div id="drop-zone" class="upload-container glass">
+                <div class="upload-prompt">
+                    <div class="upload-icon">📸</div>
+                    <p>방 사진을 드래그하거나 클릭하여 업로드하세요</p>
+                </div>
+                <img id="image-preview" src="#" alt="미리보기">
+                <input type="file" id="file-input" hidden accept="image/*">
+            </div>
+        </section>
+
+        <aside class="sidebar glass">
+            <h2 class="section-title">디자인 스타일 선택</h2>
+            <div class="style-grid">
+                <div class="style-item active" data-style="modern">
+                    <div class="style-icon">🏢</div>
+                    <div class="style-name">모던</div>
+                </div>
+                <div class="style-item" data-style="minimalist">
+                    <div class="style-icon">⬜</div>
+                    <div class="style-name">미니멀</div>
+                </div>
+                <div class="style-item" data-style="nordic">
+                    <div class="style-icon">🌲</div>
+                    <div class="style-name">북유럽</div>
+                </div>
+                <div class="style-item" data-style="industrial">
+                    <div class="style-icon">🏭</div>
+                    <div class="style-name">인더스트리얼</div>
+                </div>
+                <div class="style-item" data-style="luxury">
+                    <div class="style-icon">💎</div>
+                    <div class="style-name">럭셔리</div>
+                </div>
+                <div class="style-item" data-style="cyberpunk">
+                    <div class="style-icon">🌃</div>
+                    <div class="style-name">사이버펑크</div>
+                </div>
+            </div>
+
+            <button id="generate-btn" class="btn-generate" disabled>디자인 생성하기</button>
+        </aside>
+    </main>
+
+    <div id="loading">
+        <div class="loader"></div>
+        <p>AI가 인테리어를 구상 중입니다...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
